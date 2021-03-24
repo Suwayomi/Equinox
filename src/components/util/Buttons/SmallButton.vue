@@ -11,5 +11,9 @@
   border-radius: 4px;
   background: var(--content-highlight);
   color: var(--text);
+  cursor: pointer;
+}
+.small-button:hover {
+  background: var(--content-hover);
 }
 </style>

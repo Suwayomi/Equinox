@@ -1,9 +1,13 @@
 <template>
-  <router-view />
+  <main class="container">
+    <router-view />
+  </main>
 </template>
 
-<style scoped>
-div {
-  margin-top: 60px;
+<style lang="scss" scoped>
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 60px auto;
 }
 </style>

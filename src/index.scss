@@ -1,6 +1,9 @@
+$breakpoint: 600px;
+
 :root {
-	--body: #fefefe;
-	--content: #f8f9fa;
+	--content: #fefefe;
+	--body: #fbfbfb;
+	--body-offset: #f5f7f9;
 	--content-highlight: #f5f7f9;
 	--content-hover: #ebebeb;
 	--text: #444;
@@ -14,6 +17,7 @@
 	:root {
 		--body: #202328;
 		--content: #1b1b1b;
+		--body-offset: #0c0c0c;
 		--content-highlight: #181818;
 		--content-hover: #000;
 		--text: #fcfcfc;

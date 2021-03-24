@@ -14,10 +14,18 @@ const Template = (args) => ({
   template: `
   <storybook-wrapper>
   	<div style="width: 350px; border: 10px dotted var(--border)">
-	  <series-card />
+	  <series-card :small="args.small" :large="args.large" />
 	</div>
   </storybook-wrapper>
   `,
 });
 
-export const MangaCardHorizontal = Template.bind({});
+export const SeriesCardHorizontal = Template.bind({});
+SeriesCardHorizontal.args = {
+  small: true,
+};
+
+export const SeriesCardLarge = Template.bind({});
+SeriesCardLarge.args = {
+  large: true,
+};

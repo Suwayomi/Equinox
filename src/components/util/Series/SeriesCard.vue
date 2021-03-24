@@ -1,5 +1,5 @@
 <template>
-  <div class="manga-card">
+  <div class="series-card" :large="large" :small="small">
     <div class="poster-wrapper">
       <poster src="https://cover.nep.li/cover/Dr-Stone.jpg" />
     </div>
@@ -21,8 +21,10 @@
 </template>
 
 <style lang="scss" scoped>
+@use '../../../index' as v;
+
 // Layout
-.manga-card {
+.series-card {
   width: 100%;
   display: grid;
   grid-template-columns: 100px 1fr;
@@ -37,10 +39,20 @@
     grid-gap: 20px;
   }
 
-  .meta-actions > * {
-    display: flex;
-    margin: 5px 0;
+  .meta-actions {
+    display: grid;
+    grid-template-columns: 100%;
+    align-items: center;
+    grid-gap: 5px;
   }
+}
+
+// Desktop / tablet layout
+@mixin large {
+  grid-template-columns: 100%;
+  grid-gap: 5px;
+  border-radius: 4px;
+  overflow: hidden;
 }
 
 // Actual stylings
@@ -58,6 +70,16 @@
 .small-button {
   color: var(--text-secondary);
 }
+
+.series-card[large="true"] {
+  @include large;
+}
+
+@media (min-width: v.$breakpoint + 1) {
+  .series-card[small="false"] {
+    @include large;
+  }
+}
 </style>
 
 <script lang="ts">
@@ -65,14 +87,25 @@
 import { defineComponent } from "vue";
 
 // Import components
-import Poster from "../Poster.vue";
+import Poster from "../Images/Poster.vue";
 import SmallButton from "../Buttons/SmallButton.vue";
 
 // Import icons
 import { InfoIcon, BookOpenIcon } from "@zhuowenli/vue-feather-icons";
 
-console.log(InfoIcon);
 export default defineComponent({
+  props: {
+    small: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+    large: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+  },
   components: {
     Poster,
     SmallButton,
