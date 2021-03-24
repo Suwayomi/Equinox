@@ -11,6 +11,6 @@
   align-items: center;
   padding: 40px;
   box-sizing: border-box;
-  height: calc(100vh - 2rem);
+  min-height: calc(100vh - 2rem);
 }
 </style>

@@ -1,4 +1,5 @@
 import StorybookWrapper from "../../../stories/Wrapper.vue";
+import StorybookContainer from "../../../stories/Container.vue";
 import SeriesCard from "./SeriesCard.vue";
 
 export default {
@@ -7,15 +8,19 @@ export default {
 };
 
 const Template = (args) => ({
-  components: { SeriesCard, StorybookWrapper },
+  components: {
+    SeriesCard,
+    StorybookWrapper,
+    StorybookContainer,
+  },
   setup() {
     return { args };
   },
   template: `
   <storybook-wrapper>
-  	<div :style="\`width: $\{args.width}px; border: 10px dotted var(--border)\`">
-	  <series-card :small="args.small" :large="args.large" />
-	</div>
+    <storybook-container :width="\`$\{args.width}px\`">
+    <series-card :small="args.small" :large="args.large" />
+    </storybook-container>
   </storybook-wrapper>
   `,
 });
