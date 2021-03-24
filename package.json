@@ -9,6 +9,7 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "@zhuowenli/vue-feather-icons": "^5.0.2",
     "sass": "^1.32.8",
     "vite-svg-loader": "^1.5.1",
     "vue": "^3.0.5",

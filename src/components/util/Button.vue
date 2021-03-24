@@ -4,7 +4,7 @@
   </button>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 button {
   display: inline-flex;
   justify-content: center;

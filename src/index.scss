@@ -28,7 +28,11 @@ body {
 	margin: 0;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	font-family: Avenir, Helvetica, Arial, sans-serif;
+	font-family: sans-serif;
 	background: var(--body);
-	color: var(--text);
+	color: var(--text-secondary);
+}
+svg,
+img {
+	display: block;
 }
