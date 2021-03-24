@@ -13,7 +13,7 @@ const Template = (args) => ({
   },
   template: `
   <storybook-wrapper>
-  	<div style="width: 350px; border: 10px dotted var(--border)">
+  	<div :style="\`width: $\{args.width}px; border: 10px dotted var(--border)\`">
 	  <series-card :small="args.small" :large="args.large" />
 	</div>
   </storybook-wrapper>
@@ -23,9 +23,11 @@ const Template = (args) => ({
 export const SeriesCardHorizontal = Template.bind({});
 SeriesCardHorizontal.args = {
   small: true,
+  width: 300,
 };
 
 export const SeriesCardLarge = Template.bind({});
 SeriesCardLarge.args = {
   large: true,
+  width: 180,
 };
