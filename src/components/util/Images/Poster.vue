@@ -32,7 +32,7 @@ export default defineComponent({
   },
   setup: (props) => {
     const backgroundStyle = computed(() => {
-      return `background-image: url(${props.src}); background-size: cover; background-position: center;`;
+      return `background-image: url(${props.src}); background-size: cover; background-position: center; background-color: var(--border);`;
     });
 
     return {

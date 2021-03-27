@@ -1,19 +1,16 @@
 <template>
   <div class="series-card" :large="large" :small="small">
     <div class="poster-wrapper">
-      <poster src="https://cover.nep.li/cover/Dr-Stone.jpg" />
+      <poster :src="baseUrl + data.thumbnailUrl" />
     </div>
     <div class="meta-info">
       <div class="info-core">
         <p>Z= 160 (23%)</p>
-        <h2 class="title">Dr. Stone</h2>
+        <h2 class="title">{{ data.title || "No known title" }}</h2>
       </div>
       <div class="meta-actions">
         <small-button>
           <info-icon size="24" />
-        </small-button>
-        <small-button>
-          <book-open-icon size="24" />
         </small-button>
       </div>
     </div>
@@ -26,17 +23,22 @@
 // Layout
 .series-card {
   width: 100%;
+  height: 100%;
   display: grid;
   grid-template-columns: 100px 1fr;
   grid-gap: 20px;
   align-items: center;
+
+  .poster-wrapper {
+    background: pink;
+  }
 
   .meta-info {
     display: grid;
     align-items: center;
     display: grid;
     grid-template-columns: 1fr auto;
-    grid-gap: 20px;
+    grid-gap: 5px;
   }
 
   .meta-actions {
@@ -49,10 +51,12 @@
 
 // Desktop / tablet layout
 @mixin large {
-  grid-template-columns: 100%;
-  grid-gap: 5px;
+  display: block;
   border-radius: 4px;
   overflow: hidden;
+  > * + * {
+    margin-top: 15px;
+  }
 }
 
 // Actual stylings
@@ -60,12 +64,17 @@
   margin: 0;
 
   & + * {
-    margin-top: 10px;
+    margin-top: 3px;
   }
 }
 .info-core .title {
   font-weight: bold;
   color: var(--text);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow-y: hidden;
+  word-break: break-word;
 }
 .small-button {
   color: var(--text-secondary);
@@ -105,6 +114,10 @@ export default defineComponent({
       required: false,
       default: false,
     },
+    data: {
+      type: Boolean,
+      required: true,
+    },
   },
   components: {
     Poster,
@@ -112,6 +125,11 @@ export default defineComponent({
     InfoIcon,
     BookOpenIcon,
   },
-  setup: () => {},
+  setup: () => {
+    const baseUrl = localStorage.getItem("baseUrl");
+    return {
+      baseUrl,
+    };
+  },
 });
 </script>
