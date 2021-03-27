@@ -28,7 +28,7 @@ const Template = (args) => ({
 export const SeriesCardHorizontal = Template.bind({});
 SeriesCardHorizontal.args = {
   small: true,
-  width: 300,
+  width: 350,
 };
 
 export const SeriesCardLarge = Template.bind({});
