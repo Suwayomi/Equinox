@@ -8,4 +8,4 @@ To set up a development server, make sure you have Node.js installed and run `np
 
 ## Adolla
 
-Note: while this is made by the same person who made Adolla, this is not a successor. It's simply a different client.
+Note: while this is made by the same person who made [Adolla](https://github.com/adollaapp/adolla), this is not a successor. It's simply an alternative interface (WebUI) for Tachidesk.
