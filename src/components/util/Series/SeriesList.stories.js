@@ -4,7 +4,7 @@ import SeriesList from "./SeriesList.vue";
 import SeriesCard from "./SeriesCard.vue";
 
 export default {
-  title: "App/Lists",
+  title: "Displays/Lists",
   component: SeriesList,
 };
 
@@ -21,17 +21,17 @@ const Template = (args) => ({
   template: `
   <storybook-wrapper>
   	<storybook-container width="1200px">
-	  <series-list>
-		<series-card :small="args.small" :large="args.large" />
-		<series-card :small="args.small" :large="args.large" />
-		<series-card :small="args.small" :large="args.large" />
-		<series-card :small="args.small" :large="args.large" />
-		<series-card :small="args.small" :large="args.large" />
-		<series-card :small="args.small" :large="args.large" />
-		<series-card :small="args.small" :large="args.large" />
-		<series-card :small="args.small" :large="args.large" />
-	  </series-list>
-	</storybook-container>
+      <series-list>
+        <series-card fake :small="args.small" :large="args.large" />
+        <series-card fake :small="args.small" :large="args.large" />
+        <series-card fake :small="args.small" :large="args.large" />
+        <series-card fake :small="args.small" :large="args.large" />
+        <series-card fake :small="args.small" :large="args.large" />
+        <series-card fake :small="args.small" :large="args.large" />
+        <series-card fake :small="args.small" :large="args.large" />
+        <series-card fake :small="args.small" :large="args.large" />
+      </series-list>
+    </storybook-container>
   </storybook-wrapper>
   `,
 });

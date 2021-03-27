@@ -1,12 +1,20 @@
 <template>
   <div class="series-card" :large="large" :small="small">
     <div class="poster-wrapper">
-      <poster :src="baseUrl + data.thumbnailUrl" />
+      <poster
+        :src="
+          fake
+            ? 'https://cover.nep.li/cover/New-Game.jpg'
+            : baseUrl + data.thumbnailUrl
+        "
+      />
     </div>
     <div class="meta-info">
       <div class="info-core">
-        <p>Z= 160 (23%)</p>
-        <h2 class="title">{{ data.title || "No known title" }}</h2>
+        <p>Chapter 15 (15%)</p>
+        <h2 class="title">
+          {{ fake ? "New Game!" : data.title || "No known title" }}
+        </h2>
       </div>
       <div class="meta-actions">
         <small-button>
@@ -28,10 +36,6 @@
   grid-template-columns: 100px 1fr;
   grid-gap: 20px;
   align-items: center;
-
-  .poster-wrapper {
-    background: pink;
-  }
 
   .meta-info {
     display: grid;
@@ -117,6 +121,11 @@ export default defineComponent({
     data: {
       type: Boolean,
       required: true,
+    },
+    fake: {
+      type: Boolean,
+      required: false,
+      default: false,
     },
   },
   components: {

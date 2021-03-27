@@ -4,7 +4,7 @@ import SmallButtonComponent from "./SmallButton.vue";
 import { BookOpenIcon } from "@zhuowenli/vue-feather-icons";
 
 export default {
-  title: "App/Buttons",
+  title: "Buttons/Small",
   component: SmallButtonComponent,
 };
 

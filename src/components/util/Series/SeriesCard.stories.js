@@ -3,7 +3,7 @@ import StorybookContainer from "../../../stories/Container.vue";
 import SeriesCard from "./SeriesCard.vue";
 
 export default {
-  title: "App/Info",
+  title: "Displays/Info",
   component: SeriesCard,
 };
 
@@ -19,7 +19,7 @@ const Template = (args) => ({
   template: `
   <storybook-wrapper>
     <storybook-container :width="\`$\{args.width}px\`">
-    <series-card :small="args.small" :large="args.large" />
+      <series-card fake :small="args.small" :large="args.large" />
     </storybook-container>
   </storybook-wrapper>
   `,
@@ -34,5 +34,5 @@ SeriesCardHorizontal.args = {
 export const SeriesCardLarge = Template.bind({});
 SeriesCardLarge.args = {
   large: true,
-  width: 180,
+  width: 210,
 };
