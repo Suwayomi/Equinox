@@ -13,7 +13,6 @@
       "dom"
     ],
     "types": [
-      "vite-svg-loader",
       "vite/client",
     ],
     "baseUrl": "src",

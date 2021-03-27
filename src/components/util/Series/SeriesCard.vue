@@ -119,7 +119,7 @@ export default defineComponent({
       default: false,
     },
     data: {
-      type: Boolean,
+      type: Object,
       required: true,
     },
     fake: {

@@ -14,13 +14,17 @@ import { defineComponent, onMounted, ref } from "vue";
 import SeriesList from "../components/util/Series/SeriesList.vue";
 import SeriesCard from "../components/util/Series/SeriesCard.vue";
 
+// Import types
+import { Series } from "../types";
+
 export default defineComponent({
   components: {
     SeriesList,
     SeriesCard,
   },
   setup() {
-    const library = ref([]);
+    const defaultLib: Series[] = [];
+    const library = ref(defaultLib);
     const loading = ref(true);
 
     async function fetchData() {
