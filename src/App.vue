@@ -8,6 +8,8 @@
 </template>
 
 <style lang="scss" scoped>
+@use './index.scss' as v;
+
 .container {
   width: 90%;
   max-width: 1200px;
@@ -16,6 +18,15 @@
 .main-layout {
   display: grid;
   grid-template-columns: auto 1fr;
+}
+
+@media (orientation: portrait) {
+  .sidebar {
+    display: none;
+  }
+  .main-layout {
+    grid-template-columns: 100%;
+  }
 }
 </style>
 

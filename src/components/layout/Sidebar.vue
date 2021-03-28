@@ -1,5 +1,5 @@
 <template>
-  <aside>
+  <aside class="sidebar">
     <router-link to="/" class="brand-link">
       <section class="brand">
         <align-center-icon size="36" />
