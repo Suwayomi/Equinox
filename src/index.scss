@@ -1,11 +1,13 @@
 $breakpoint: 600px;
 
 :root {
+	--theme: #00ac8c;
 	--content: #fefefe;
 	--body: #fbfbfb;
 	--body-offset: #f5f7f9;
 	--content-highlight: #f5f7f9;
 	--content-hover: #ebebeb;
+	--text-harsh: black;
 	--text: #444;
 	--text-secondary: #6b6b6b;
 	--border: #e4e4e4;
@@ -20,6 +22,7 @@ $breakpoint: 600px;
 		--body-offset: #0c0c0c;
 		--content-highlight: #181818;
 		--content-hover: #000;
+		--text-harsh: white;
 		--text: #fcfcfc;
 		--text-secondary: #b8b8b8;
 		--border: #3b3b3b;
@@ -32,7 +35,8 @@ body {
 	margin: 0;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	font-family: sans-serif;
+	font-family: -apple-system, system-ui, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu,
+		Cantarell, "Helvetica Neue", sans-serif;
 	background: var(--body);
 	color: var(--text-secondary);
 }
