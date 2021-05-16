@@ -18,6 +18,10 @@
 	color: inherit;
 	cursor: pointer;
 
+	&:not(.router-link-exact-active):hover {
+		background: var(--badge-hover);
+	}
+
 	&.router-link-exact-active {
 		background: var(--badge-highlight);
 		color: var(--badge-highlight-text);

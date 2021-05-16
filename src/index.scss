@@ -3,6 +3,7 @@ $breakpoint: 600px;
 :root {
 	--theme: #00ac8c;
 	--badge-highlight: var(--theme);
+	--badge-hover: var(--border);
 	--badge-highlight-text: white;
 	--content: #fefefe;
 	--body: #fbfbfb;
@@ -20,6 +21,7 @@ $breakpoint: 600px;
 @media (prefers-color-scheme: dark) {
 	:root {
 		--badge-highlight: #34373d;
+		--badge-hover: #2d2f33;
 		--badge-highlight-text: white;
 		--body: #202328;
 		--content: #1b1b1b;
