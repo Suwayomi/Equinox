@@ -15,8 +15,8 @@ const Template = (args) => ({
 		return { args };
 	},
 	template: `
-	<storybook-wrapper class="no-padding">
-		<banner>{{args.label}}</banner>
+	<storybook-wrapper>
+		<banner style="width: 100%">{{args.label}}</banner>
 	</storybook-wrapper>
 	`,
 });

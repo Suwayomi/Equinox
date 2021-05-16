@@ -5,7 +5,7 @@
 </template>
 
 <style lang="scss" scoped>
-a {
+.nav-link {
 	display: grid;
 	grid-template-columns: auto 1fr;
 	grid-gap: 10px;
