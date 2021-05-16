@@ -23,6 +23,6 @@ const Template = (args) => ({
 
 export const Anchor = Template.bind({});
 Anchor.args = {
-	label: "Something went wrong.",
+	label: "This is a link.",
 	href: "https://jipfr.nl",
 };

@@ -23,5 +23,5 @@ const Template = (args) => ({
 
 export const ErrorBanner = Template.bind({});
 ErrorBanner.args = {
-	label: "Something went wrong.",
+	label: "This is an error banner",
 };

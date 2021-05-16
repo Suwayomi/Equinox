@@ -16,6 +16,7 @@
 	text-decoration: none;
 	font-weight: bold;
 	color: inherit;
+	cursor: pointer;
 
 	&.router-link-exact-active {
 		background: var(--badge-highlight);
