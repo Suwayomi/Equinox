@@ -15,8 +15,8 @@
 			<summary>Change base URL for Tachidesk API</summary>
 			<input
 				type="text"
-				:value="baseUrl"
-				@change="(e) => setBaseUrl(e.currentTarget.value)"
+				:value="(baseUrl || '').toString()"
+				@change="(e) => setBaseUrl(e)"
 				style="width: 100%"
 			/>
 		</details>
@@ -67,7 +67,10 @@ export default defineComponent({
 			fetchData();
 		});
 
-		async function setBaseUrl(e: string) {
+		async function setBaseUrl(evt: Event) {
+			// Extract value from event
+			let e = (<HTMLTextAreaElement>evt.currentTarget).value;
+
 			console.log(e);
 			while (e.endsWith("/")) {
 				e = e.slice(0, -1);
