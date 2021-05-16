@@ -29,7 +29,7 @@ aside {
 	box-sizing: border-box;
 	padding: 20px;
 	width: 275px;
-	height: 100vh;
+	height: calc(100vh - env(safe-area-inset-top));
 	background: var(--body-offset);
 	position: sticky;
 	top: 0;
