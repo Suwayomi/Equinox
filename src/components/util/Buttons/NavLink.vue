@@ -18,8 +18,8 @@
 	color: inherit;
 
 	&.router-link-exact-active {
-		background: var(--theme);
-		color: white;
+		background: var(--badge-highlight);
+		color: var(--badge-highlight-text);
 		cursor: initial;
 	}
 }

@@ -2,6 +2,8 @@ $breakpoint: 600px;
 
 :root {
 	--theme: #00ac8c;
+	--badge-highlight: var(--theme);
+	--badge-highlight-text: white;
 	--content: #fefefe;
 	--body: #fbfbfb;
 	--body-offset: #f5f7f9;
@@ -17,9 +19,11 @@ $breakpoint: 600px;
 
 @media (prefers-color-scheme: dark) {
 	:root {
+		--badge-highlight: #34373d;
+		--badge-highlight-text: white;
 		--body: #202328;
 		--content: #1b1b1b;
-		--body-offset: #0c0c0c;
+		--body-offset: #23262c;
 		--content-highlight: #181818;
 		--content-hover: #000;
 		--text-harsh: white;
