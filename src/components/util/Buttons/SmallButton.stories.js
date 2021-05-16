@@ -4,20 +4,20 @@ import SmallButtonComponent from "./SmallButton.vue";
 import { BookOpenIcon } from "@zhuowenli/vue-feather-icons";
 
 export default {
-  title: "Buttons/Small",
-  component: SmallButtonComponent,
+	title: "Buttons/Small",
+	component: SmallButtonComponent,
 };
 
 const Template = (args) => ({
-  components: {
-    SmallButton: SmallButtonComponent,
-    StorybookWrapper,
-    BookOpenIcon,
-  },
-  setup() {
-    return { args };
-  },
-  template: `
+	components: {
+		SmallButton: SmallButtonComponent,
+		StorybookWrapper,
+		BookOpenIcon,
+	},
+	setup() {
+		return { args };
+	},
+	template: `
   <storybook-wrapper>
     <small-button>
 	    <book-open-icon size="24" />
