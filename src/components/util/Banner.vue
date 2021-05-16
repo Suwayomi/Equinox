@@ -35,7 +35,8 @@
 		background: #1a403c;
 	}
 	.banner[data-type="error"] {
-		background: #302024;
+		background: #382228;
+		color: #ff7d7d;
 	}
 }
 </style>
