@@ -69,6 +69,10 @@ export default defineComponent({
 
 		async function setBaseUrl(e: string) {
 			console.log(e);
+			while (e.endsWith("/")) {
+				e = e.slice(0, -1);
+			}
+			console.log(e);
 
 			function fail() {
 				error.value = "The URL you provided is not running a Tachidesk server.";
