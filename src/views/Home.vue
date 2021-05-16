@@ -1,9 +1,25 @@
 <template>
-  <div>
-    <series-list>
-      <series-card v-for="series in library" :key="series.id" :data="series" />
-    </series-list>
-  </div>
+	<div>
+		<!-- Errors -->
+		<div v-if="error">
+			<banner type="error">
+				{{ error }}
+			</banner>
+		</div>
+
+		<!-- Temporary base URL config input -->
+		<input
+			type="text"
+			:value="baseUrl"
+			@change="(e) => setBaseUrl(e.currentTarget.value)"
+			style="width: 100%"
+		/>
+
+		<!-- Some list idk -->
+		<series-list>
+			<series-card v-for="series in library" :key="series.id" :data="series" />
+		</series-list>
+	</div>
 </template>
 
 <script lang="ts">
@@ -13,38 +29,74 @@ import { defineComponent, onMounted, ref } from "vue";
 // Import components
 import SeriesList from "../components/util/Series/SeriesList.vue";
 import SeriesCard from "../components/util/Series/SeriesCard.vue";
+import Banner from "../components/util/Banner.vue";
 
 // Import types
 import { Series } from "../types";
 
 export default defineComponent({
-  components: {
-    SeriesList,
-    SeriesCard,
-  },
-  setup() {
-    const defaultLib: Series[] = [];
-    const library = ref(defaultLib);
-    const loading = ref(true);
+	components: {
+		SeriesList,
+		SeriesCard,
+		Banner,
+	},
+	setup() {
+		const defaultLib: Series[] = [];
 
-    async function fetchData() {
-      loading.value = true;
+		const library = ref(defaultLib);
+		const loading = ref(true);
+		const error = ref("");
 
-      const baseUrl = localStorage.getItem("baseUrl");
-      const url = `${baseUrl}/api/v1/library`;
-      const libraryArray = await (await fetch(url)).json();
-      library.value = libraryArray;
+		let baseUrl = ref(localStorage.getItem("baseUrl"));
 
-      loading.value = false;
-    }
+		onMounted(() => {
+			fetchData();
+		});
 
-    onMounted(() => {
-      fetchData();
-    });
+		async function setBaseUrl(e: string) {
+			console.log(e);
 
-    return {
-      library,
-    };
-  },
+			function fail() {
+				error.value = "The URL you provided is not running a Tachidesk server.";
+				baseUrl.value = baseUrl.value;
+			}
+
+			try {
+				error.value = "";
+				const url = `${e}/api/v1/about`;
+				const aboutReq = await fetch(url);
+
+				if (aboutReq.status === 200) {
+					console.log(aboutReq);
+					localStorage.setItem("baseUrl", e);
+					baseUrl.value = e;
+					fetchData();
+				} else {
+					fail();
+				}
+			} catch (err) {
+				fail();
+			}
+		}
+
+		async function fetchData() {
+			loading.value = true;
+			library.value = [];
+
+			const url = `${baseUrl.value}/api/v1/library`;
+			const libraryArray = await (await fetch(url)).json();
+			library.value = libraryArray;
+
+			loading.value = false;
+		}
+
+		return {
+			loading,
+			library,
+			baseUrl,
+			error,
+			setBaseUrl,
+		};
+	},
 });
 </script>
