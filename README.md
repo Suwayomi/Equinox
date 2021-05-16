@@ -1,6 +1,6 @@
 # Equinox for Tachidesk
 
-This is a project for [Tachidesk](https://github.com/Suwayomi/Tachidesk). Built with Vue 3, Vite, TS, and also Storybook. A public Storybook instance is available at [https://equinix-storybook.netlify.app/](https://equinix-storybook.netlify.app/).
+This is a project for [Tachidesk](https://github.com/Suwayomi/Tachidesk). Built with Vue 3, Vite, TS, and also Storybook. A public Storybook instance is available at [https://equinox-storybook.netlify.app/](https://equinox-storybook.netlify.app/).
 
 ## Setup
 
