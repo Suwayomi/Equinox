@@ -1,4 +1,3 @@
-v
 <template>
 	<div class="banner" :data-type="type">
 		<alert-circle-icon size="24" v-if="type === 'error'" />

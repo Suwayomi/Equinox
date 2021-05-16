@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<main>
 		<!-- Errors -->
 		<div v-if="error">
 			<banner type="error">
@@ -7,20 +7,32 @@
 			</banner>
 		</div>
 
+		<!-- Information section -->
+		<Info />
+
 		<!-- Temporary base URL config input -->
-		<input
-			type="text"
-			:value="baseUrl"
-			@change="(e) => setBaseUrl(e.currentTarget.value)"
-			style="width: 100%"
-		/>
+		<details>
+			<summary>Change base URL for Tachidesk API</summary>
+			<input
+				type="text"
+				:value="baseUrl"
+				@change="(e) => setBaseUrl(e.currentTarget.value)"
+				style="width: 100%"
+			/>
+		</details>
 
 		<!-- Some list idk -->
 		<series-list>
 			<series-card v-for="series in library" :key="series.id" :data="series" />
 		</series-list>
-	</div>
+	</main>
 </template>
+
+<style lang="scss" scoped>
+main > * + * {
+	margin-top: 30px;
+}
+</style>
 
 <script lang="ts">
 // Import Vue
@@ -30,6 +42,7 @@ import { defineComponent, onMounted, ref } from "vue";
 import SeriesList from "../components/util/Series/SeriesList.vue";
 import SeriesCard from "../components/util/Series/SeriesCard.vue";
 import Banner from "../components/util/Banner.vue";
+import Info from "../components/util/Info.vue";
 
 // Import types
 import { Series } from "../types";
@@ -39,6 +52,7 @@ export default defineComponent({
 		SeriesList,
 		SeriesCard,
 		Banner,
+		Info,
 	},
 	setup() {
 		const defaultLib: Series[] = [];
