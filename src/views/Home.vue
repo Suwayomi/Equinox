@@ -17,9 +17,12 @@
 				type="text"
 				:value="(baseUrl || '').toString()"
 				@change="(e) => setBaseUrl(e)"
-				style="width: 100%"
+				style="width: 100%; font-size: 1rem"
 			/>
 		</details>
+
+		<!-- "No tachidesk server" error -->
+		<no-tachi v-if="displayNoTachi" />
 
 		<!-- Some list idk -->
 		<series-list>
@@ -43,6 +46,7 @@ import SeriesList from "../components/util/Series/SeriesList.vue";
 import SeriesCard from "../components/util/Series/SeriesCard.vue";
 import Banner from "../components/util/Banner.vue";
 import Info from "../components/util/Info.vue";
+import NoTachi from "../components/util/NoTachi.vue";
 
 // Import types
 import { Series } from "../types";
@@ -53,6 +57,7 @@ export default defineComponent({
 		SeriesCard,
 		Banner,
 		Info,
+		NoTachi,
 	},
 	setup() {
 		const defaultLib: Series[] = [];
@@ -60,6 +65,7 @@ export default defineComponent({
 		const library = ref(defaultLib);
 		const loading = ref(true);
 		const error = ref("");
+		const displayNoTachi = ref(false);
 
 		let baseUrl = ref(localStorage.getItem("baseUrl"));
 
@@ -104,9 +110,14 @@ export default defineComponent({
 			loading.value = true;
 			library.value = [];
 
-			const url = `${baseUrl.value}/api/v1/library`;
-			const libraryArray = await (await fetch(url)).json();
-			library.value = libraryArray;
+			try {
+				const url = `${baseUrl.value}/api/v1/library`;
+				const libraryArray = await (await fetch(url)).json();
+				library.value = libraryArray;
+				displayNoTachi.value = false;
+			} catch (err) {
+				displayNoTachi.value = true;
+			}
 
 			loading.value = false;
 		}
@@ -117,6 +128,7 @@ export default defineComponent({
 			baseUrl,
 			error,
 			setBaseUrl,
+			displayNoTachi,
 		};
 	},
 });
