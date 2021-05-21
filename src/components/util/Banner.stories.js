@@ -16,7 +16,7 @@ const Template = (args) => ({
 	},
 	template: `
 	<storybook-wrapper>
-		<banner style="width: 100%">{{args.label}}</banner>
+		<banner :type="args.type" style="width: 100%">{{args.label}}</banner>
 	</storybook-wrapper>
 	`,
 });
@@ -24,4 +24,11 @@ const Template = (args) => ({
 export const ErrorBanner = Template.bind({});
 ErrorBanner.args = {
 	label: "This is an error banner",
+	type: "error",
+};
+
+export const MessageBanner = Template.bind({});
+MessageBanner.args = {
+	label: "This is a message banner",
+	type: "message",
 };
