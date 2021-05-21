@@ -7,8 +7,12 @@
 						<p class="chapter-title">{{ chapter.name }}</p>
 					</div>
 					<div class="chapter-right">
-						<small-button :class="chapter.bookmarked ? 'active' : ''">
-							<bookmark-icon size="24" />
+						<small-button
+							:class="chapter.bookmarked ? 'active' : ''"
+							@click="(e) => handleBookmarkClick(e, chapter)"
+						>
+							<loading class="icon-size" v-if="chapter.loading" />
+							<bookmark-icon v-else size="24" />
 						</small-button>
 					</div>
 				</div>
@@ -58,6 +62,7 @@ import { defineComponent, ref } from "vue";
 
 // Import components
 import SmallButton from "../util/Buttons/SmallButton.vue";
+import Loading from "../util/Loading/Loading.vue";
 
 // Import icons
 import { BookmarkIcon } from "@zhuowenli/vue-feather-icons";
@@ -65,6 +70,7 @@ import { BookmarkIcon } from "@zhuowenli/vue-feather-icons";
 export default defineComponent({
 	components: {
 		SmallButton,
+		Loading,
 		BookmarkIcon,
 	},
 	props: {
@@ -73,10 +79,33 @@ export default defineComponent({
 			required: true,
 		},
 	},
-	setup(props) {
+	setup(props, { emit }) {
 		const typedChapters = ref<any[]>(props.chapters);
+
+		const handleBookmarkClick = async (e: MouseEvent, chapter: any) => {
+			e.preventDefault();
+			chapter.loading = true;
+
+			const baseUrl = localStorage.getItem("baseUrl");
+			const patchUrl = `${baseUrl}/api/v1/manga/${chapter.mangaId}/chapter/${chapter.index}`;
+
+			console.log(patchUrl);
+			const fd = new FormData();
+			fd.append("bookmarked", (!chapter.bookmarked).toString());
+
+			await fetch(patchUrl, {
+				method: "PATCH",
+				body: fd,
+			})
+				.then((d) => d.text())
+				.then(() => {
+					emit("update-chapters");
+				});
+		};
+
 		return {
 			typedChapters,
+			handleBookmarkClick,
 		};
 	},
 });

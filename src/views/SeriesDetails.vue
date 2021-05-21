@@ -33,7 +33,11 @@
 				<!-- Chapters section -->
 				<section>
 					<h2 class="section-title">Chapters</h2>
-					<chapter-list v-if="chapters.length > 0" :chapters="chapters" />
+					<chapter-list
+						v-if="chapters.length > 0"
+						:chapters="chapters"
+						@update-chapters="updateChapters"
+					/>
 					<message v-else class="left">
 						<p>
 							Well, that's awkward. It looks like there's no chapters for this
@@ -111,7 +115,6 @@ export default defineComponent({
 		async function fetchData() {
 			loading.value = true;
 			const url = `${baseUrl}/api/v1/manga/${route.params.id}/?onlineFetch=false`;
-			const chapterUrl = `${baseUrl}/api/v1/manga/${route.params.id}/chapters?onlineFetch=false`;
 
 			const detailsReq = fetch(url)
 				.then((d) => d.json())
@@ -119,14 +122,24 @@ export default defineComponent({
 					seriesData.value = details;
 				});
 
-			const chaptersReq = fetch(chapterUrl)
-				.then((d) => d.json())
-				.then((chaptersData) => {
-					chapters.value = chaptersData;
-				});
+			const chaptersReq = updateChapters();
 
 			await Promise.all([detailsReq, chaptersReq]);
 			loading.value = false;
+		}
+
+		function updateChapters() {
+			const chapterUrl = `${baseUrl}/api/v1/manga/${route.params.id}/chapters?onlineFetch=false`;
+			console.log(chapterUrl);
+			return fetch(chapterUrl)
+				.then((d) => d.json())
+				.then((chaptersData) => {
+					console.log(chaptersData);
+					chapters.value = [];
+					requestAnimationFrame(() => {
+						chapters.value = chaptersData;
+					});
+				});
 		}
 
 		return {
@@ -134,6 +147,7 @@ export default defineComponent({
 			chapters,
 			loading,
 			baseUrl,
+			updateChapters,
 		};
 	},
 });

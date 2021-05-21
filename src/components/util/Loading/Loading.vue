@@ -16,6 +16,11 @@
 	grid-template-columns: repeat(3, 1fr);
 	grid-gap: 2px;
 
+	&.icon-size {
+		width: 24px;
+		height: 24px;
+	}
+
 	> *:nth-child(1) {
 		animation-delay: 0;
 	}
