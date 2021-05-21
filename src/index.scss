@@ -2,9 +2,10 @@ $breakpoint: 600px;
 
 :root {
 	--theme: #00ac8c;
+	--text-on-theme: white;
 	--badge-highlight: var(--theme);
 	--badge-hover: var(--border);
-	--badge-highlight-text: white;
+	--badge-highlight-text: var(--text-on-theme);
 	--content: #fefefe;
 	--body: #fbfbfb;
 	--body-offset: #f5f7f9;
