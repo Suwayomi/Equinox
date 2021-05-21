@@ -1,6 +1,6 @@
 <template>
 	<div class="chapter-list">
-		<div v-for="chapter in chapters" :key="chapter.index" class="chapter">
+		<div v-for="chapter in typedChapters" :key="chapter.index" class="chapter">
 			<router-link to="/" class="chapter-info">
 				<div class="spread">
 					<div class="chapter-main">
@@ -13,7 +13,6 @@
 					</div>
 				</div>
 			</router-link>
-			<!-- {{ chapter }} -->
 		</div>
 	</div>
 </template>
@@ -55,7 +54,7 @@
 
 <script lang="ts">
 // Import Vue
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 
 // Import components
 import SmallButton from "../util/Buttons/SmallButton.vue";
@@ -73,6 +72,12 @@ export default defineComponent({
 			type: Array,
 			required: true,
 		},
+	},
+	setup(props) {
+		const typedChapters = ref<any[]>(props.chapters);
+		return {
+			typedChapters,
+		};
 	},
 });
 </script>

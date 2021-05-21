@@ -97,8 +97,8 @@ export default defineComponent({
 		Message,
 	},
 	setup() {
-		const seriesData = ref({});
-		const chapters = ref([]);
+		const seriesData = ref<any>({});
+		const chapters = ref<any[]>([]);
 		const loading = ref(true);
 
 		const baseUrl = localStorage.getItem("baseUrl");
