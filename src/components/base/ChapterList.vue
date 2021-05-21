@@ -4,7 +4,12 @@
 			<router-link to="/" class="chapter-info">
 				<div class="spread">
 					<div class="chapter-main">
-						<p class="chapter-title">{{ chapter.name }}</p>
+						<p class="chapter-title">
+							<span class="chapter-name">{{ chapter.name }}</span>
+							<span class="chapter-date">
+								{{ new Date(chapter.uploadDate).toISOString().split("T")[0] }}
+							</span>
+						</p>
 					</div>
 					<div class="chapter-right">
 						<small-button
@@ -33,6 +38,13 @@
 	margin-left: -10px;
 	margin-right: -10px;
 	border-radius: 4px;
+
+	.chapter-name {
+		margin-right: 10px;
+	}
+	.chapter-date {
+		color: var(--text-secondary);
+	}
 
 	p {
 		margin: 0;
