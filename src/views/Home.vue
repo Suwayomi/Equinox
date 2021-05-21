@@ -21,6 +21,8 @@
 			/>
 		</details>
 
+		<full-loading v-if="loading" />
+
 		<!-- "No tachidesk server" error -->
 		<no-tachi v-if="displayNoTachi" />
 
@@ -47,6 +49,7 @@ import SeriesCard from "../components/util/Series/SeriesCard.vue";
 import Banner from "../components/util/Banner.vue";
 import Info from "../components/util/Info.vue";
 import NoTachi from "../components/util/NoTachi.vue";
+import FullLoading from "../components/util/Loading/FullLoading.vue";
 
 // Import types
 import { Series } from "../types";
@@ -58,6 +61,7 @@ export default defineComponent({
 		Banner,
 		Info,
 		NoTachi,
+		FullLoading,
 	},
 	setup() {
 		const defaultLib: Series[] = [];
