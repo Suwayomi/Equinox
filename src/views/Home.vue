@@ -24,7 +24,11 @@
 		<full-loading v-if="loading" />
 
 		<!-- "No tachidesk server" error -->
-		<no-tachi v-else-if="displayNoTachi" />
+		<message v-else-if="displayNoTachi">
+			Looks like the URL provided in the settings is not running a Tachidesk
+			server. To fix this, change the URL on the settings page or host a server
+			on the specified address.
+		</message>
 
 		<!-- Some list idk -->
 		<series-list v-else>
@@ -48,7 +52,7 @@ import SeriesList from "../components/util/Series/SeriesList.vue";
 import SeriesCard from "../components/util/Series/SeriesCard.vue";
 import Banner from "../components/util/Banner.vue";
 import Info from "../components/util/Info.vue";
-import NoTachi from "../components/util/NoTachi.vue";
+import Message from "../components/util/Message.vue";
 import FullLoading from "../components/util/Loading/FullLoading.vue";
 
 // Import types
@@ -60,7 +64,7 @@ export default defineComponent({
 		SeriesCard,
 		Banner,
 		Info,
-		NoTachi,
+		Message,
 		FullLoading,
 	},
 	setup() {

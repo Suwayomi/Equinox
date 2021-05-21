@@ -3,9 +3,7 @@
 		<div class="no-server">
 			<h2 class="title">{{ title }}</h2>
 			<p class="description">
-				Looks like the URL provided in the settings is not running a Tachidesk
-				server. To fix this, change the URL on the settings page or host a
-				server on the specified address.
+				<slot />
 			</p>
 		</div>
 	</div>
@@ -18,6 +16,7 @@
 	justify-content: center;
 }
 .no-server {
+	width: 100%;
 	max-width: 400px;
 	padding: 40px 15px;
 	background: var(--content);
