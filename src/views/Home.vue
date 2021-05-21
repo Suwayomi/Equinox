@@ -10,17 +10,6 @@
 		<!-- Information section -->
 		<Info />
 
-		<!-- Temporary base URL config input -->
-		<details>
-			<summary>Change base URL for Tachidesk API</summary>
-			<input
-				type="text"
-				:value="(baseUrl || '').toString()"
-				@change="(e) => setBaseUrl(e)"
-				style="width: 100%; font-size: 1rem"
-			/>
-		</details>
-
 		<full-loading v-if="loading" />
 
 		<!-- "No tachidesk server" error -->
@@ -81,39 +70,6 @@ export default defineComponent({
 			fetchData();
 		});
 
-		async function setBaseUrl(evt: Event) {
-			// Extract value from event
-			let e = (<HTMLTextAreaElement>evt.currentTarget).value;
-
-			console.log(e);
-			while (e.endsWith("/")) {
-				e = e.slice(0, -1);
-			}
-			console.log(e);
-
-			function fail() {
-				error.value = "The URL you provided is not running a Tachidesk server.";
-				baseUrl.value = baseUrl.value;
-			}
-
-			try {
-				error.value = "";
-				const url = `${e}/api/v1/about`;
-				const aboutReq = await fetch(url);
-
-				if (aboutReq.status === 200) {
-					console.log(aboutReq);
-					localStorage.setItem("baseUrl", e);
-					baseUrl.value = e;
-					fetchData();
-				} else {
-					fail();
-				}
-			} catch (err) {
-				fail();
-			}
-		}
-
 		async function fetchData() {
 			loading.value = true;
 			library.value = [];
@@ -135,7 +91,6 @@ export default defineComponent({
 			library,
 			baseUrl,
 			error,
-			setBaseUrl,
 			displayNoTachi,
 		};
 	},
