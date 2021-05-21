@@ -24,10 +24,10 @@
 		<full-loading v-if="loading" />
 
 		<!-- "No tachidesk server" error -->
-		<no-tachi v-if="displayNoTachi" />
+		<no-tachi v-else-if="displayNoTachi" />
 
 		<!-- Some list idk -->
-		<series-list>
+		<series-list v-else>
 			<series-card v-for="series in library" :key="series.id" :data="series" />
 		</series-list>
 	</main>
