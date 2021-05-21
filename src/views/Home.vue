@@ -20,7 +20,7 @@
 		</message>
 
 		<!-- Some list idk -->
-		<series-list v-else>
+		<series-list v-else title="Library" open>
 			<series-card v-for="series in library" :key="series.id" :data="series" />
 		</series-list>
 	</main>
