@@ -33,6 +33,7 @@
 @media (prefers-color-scheme: dark) {
 	.banner[data-type="message"] {
 		background: #1a403c;
+		color: var(--text-harsh);
 	}
 	.banner[data-type="error"] {
 		background: #382228;
