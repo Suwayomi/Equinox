@@ -33,7 +33,17 @@
 				<!-- Chapters section -->
 				<section>
 					<h2 class="section-title">Chapters</h2>
-					<chapter-list :chapters="chapters" />
+					<chapter-list v-if="chapters.length > 0" :chapters="chapters" />
+					<message v-else class="left">
+						<p>
+							Well, that's awkward. It looks like there's no chapters for this
+							series.
+						</p>
+						<p>
+							If this is a mistake, try viewing the chapters on the source
+							website or reloading the page.
+						</p>
+					</message>
 				</section>
 			</main>
 		</div>
@@ -76,6 +86,7 @@ import FullLoading from "../components/util/Loading/FullLoading.vue";
 import Poster from "../components/util/Images/Poster.vue";
 import Tag from "../components/util/Buttons/Tag.vue";
 import ChapterList from "../components/base/ChapterList.vue";
+import Message from "../components/util/Message.vue";
 
 export default defineComponent({
 	components: {
@@ -83,6 +94,7 @@ export default defineComponent({
 		Poster,
 		Tag,
 		ChapterList,
+		Message,
 	},
 	setup() {
 		const seriesData = ref({});

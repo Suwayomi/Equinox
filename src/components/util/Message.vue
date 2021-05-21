@@ -1,6 +1,6 @@
 <template>
-	<div class="no-server-wrapper">
-		<div class="no-server">
+	<div class="message-wrapper">
+		<div class="message">
 			<h2 class="title">{{ title }}</h2>
 			<p class="description">
 				<slot />
@@ -9,20 +9,35 @@
 	</div>
 </template>
 
+<style lang="scss">
+.message {
+	p {
+		margin: 0;
+	}
+	p + p {
+		margin-top: 10px;
+	}
+}
+</style>
+
 <style lang="scss" scoped>
-.no-server-wrapper {
+.message-wrapper {
 	width: 100%;
 	display: flex;
 	justify-content: center;
+
+	&.left {
+		justify-content: flex-start;
+	}
 }
-.no-server {
+.message {
 	width: 100%;
 	max-width: 400px;
 	padding: 40px 15px;
 	background: var(--content);
 	border-radius: 6px;
 }
-.no-server .title {
+.message .title {
 	color: var(--text-harsh);
 	margin-top: 0;
 }
