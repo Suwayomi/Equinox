@@ -11,5 +11,6 @@
 	border-radius: 4px;
 	background: var(--theme);
 	color: var(--text-on-theme);
+	white-space: nowrap;
 }
 </style>
