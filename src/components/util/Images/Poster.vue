@@ -1,17 +1,14 @@
 <template>
-  <div class="is-poster">
-    <div class="poster" :style="backgroundStyle"></div>
-  </div>
+	<div class="is-poster">
+		<div class="poster" :style="backgroundStyle"></div>
+	</div>
 </template>
 
 <style lang="scss" scoped>
-.is-poster {
-  // border: 1px solid var(--border);
-  border-radius: 4px;
-  overflow: hidden;
-}
 .poster {
-  padding-bottom: 149%;
+	border-radius: 4px;
+	padding-bottom: 149%;
+	border: 1px solid var(--border);
 }
 </style>
 
@@ -19,25 +16,25 @@
 import { computed, defineComponent } from "vue";
 
 export default defineComponent({
-  props: {
-    src: {
-      type: String,
-      required: true,
-    },
-    alt: {
-      type: String,
-      required: false,
-      default: "",
-    },
-  },
-  setup: (props) => {
-    const backgroundStyle = computed(() => {
-      return `background-image: url(${props.src}); background-size: cover; background-position: center; background-color: var(--border);`;
-    });
+	props: {
+		src: {
+			type: String,
+			required: true,
+		},
+		alt: {
+			type: String,
+			required: false,
+			default: "",
+		},
+	},
+	setup: (props) => {
+		const backgroundStyle = computed(() => {
+			return `background-image: url(${props.src}); background-size: cover; background-position: center; background-color: var(--border);`;
+		});
 
-    return {
-      backgroundStyle,
-    };
-  },
+		return {
+			backgroundStyle,
+		};
+	},
 });
 </script>

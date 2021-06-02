@@ -1,43 +1,49 @@
 <template>
-	<main>
-		<!-- Errors -->
-		<div v-if="error">
-			<banner type="error">
-				{{ error }}
-			</banner>
-		</div>
+	<container>
+		<main>
+			<!-- Errors -->
+			<div v-if="error">
+				<banner type="error">
+					{{ error }}
+				</banner>
+			</div>
 
-		<!-- Information section -->
-		<Info />
+			<!-- Information section -->
+			<info />
 
-		<full-loading v-if="loading" />
+			<full-loading v-if="loading" />
 
-		<!-- "No tachidesk server" error -->
-		<message v-else-if="displayNoTachi">
-			Looks like the URL provided in the settings is not running a Tachidesk
-			server. To fix this, change the URL on the settings page or host a server
-			on the specified address.
-		</message>
+			<!-- "No tachidesk server" error -->
+			<message v-else-if="displayNoTachi">
+				Looks like the URL provided in the settings is not running a Tachidesk
+				server. To fix this, change the URL on the settings page or host a
+				server on the specified address.
+			</message>
 
-		<!-- Some list idk -->
-		<series-list v-else title="Library" open>
-			<series-card v-for="series in library" :key="series.id" :data="series" />
-		</series-list>
+			<!-- Some list idk -->
+			<series-list v-else title="Library" open>
+				<series-card
+					v-for="series in library"
+					:key="series.id"
+					:data="series"
+				/>
+			</series-list>
 
-		<!-- Some list idk -->
-		<series-list
-			v-for="category in categories"
-			:title="category.name"
-			:key="`category-${category.id}`"
-			open
-		>
-			<series-card
-				v-for="series in category.series"
-				:key="series.id"
-				:data="series"
-			/>
-		</series-list>
-	</main>
+			<!-- Some list idk -->
+			<series-list
+				v-for="category in categories"
+				:title="category.name"
+				:key="`category-${category.id}`"
+				open
+			>
+				<series-card
+					v-for="series in category.series"
+					:key="series.id"
+					:data="series"
+				/>
+			</series-list>
+		</main>
+	</container>
 </template>
 
 <style lang="scss" scoped>
@@ -56,6 +62,7 @@ import SeriesCard from "../components/util/Series/SeriesCard.vue";
 import Banner from "../components/util/Banner.vue";
 import Info from "../components/util/Info.vue";
 import Message from "../components/util/Message.vue";
+import Container from "../components/layout/Container.vue";
 import FullLoading from "../components/util/Loading/FullLoading.vue";
 
 // Import types
@@ -69,6 +76,7 @@ export default defineComponent({
 		Info,
 		Message,
 		FullLoading,
+		Container,
 	},
 	setup() {
 		const defaultLib: Series[] = [];

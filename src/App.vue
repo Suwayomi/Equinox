@@ -1,7 +1,7 @@
 <template>
 	<div class="main-layout">
 		<sidebar />
-		<main class="container">
+		<main class="main-container">
 			<router-view />
 		</main>
 	</div>
@@ -9,12 +9,6 @@
 
 <style lang="scss" scoped>
 @use './index.scss' as v;
-
-.container {
-	width: 90%;
-	max-width: 1200px;
-	margin: 60px auto;
-}
 .main-layout {
 	display: grid;
 	grid-template-columns: auto 1fr;
