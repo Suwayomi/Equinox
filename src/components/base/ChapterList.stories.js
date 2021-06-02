@@ -19,11 +19,13 @@ const Template = (args) => ({
 					name: "Chapter 2",
 					index: 2,
 					bookmarked: true,
+					uploadDate: new Date(),
 				},
 				{
 					name: "Chapter 1",
 					index: 0,
 					bookmarked: false,
+					uploadDate: new Date(),
 				},
 			],
 		};
