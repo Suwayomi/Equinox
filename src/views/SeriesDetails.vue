@@ -78,8 +78,22 @@ section + section {
 	margin-top: 40px;
 }
 .main-title {
+	font-size: 2rem;
+	margin-bottom: 40px;
 	color: var(--text-harsh);
 	margin: 0;
+	display: flex;
+	align-items: center;
+
+	&::before {
+		content: "";
+		display: block;
+		width: 0.8rem;
+		height: 0.8rem;
+		background: var(--theme);
+		border-radius: 50%;
+		margin-right: 10px;
+	}
 }
 .section-title {
 	color: var(--text-harsh);
