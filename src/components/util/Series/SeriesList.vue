@@ -1,7 +1,9 @@
 <template>
 	<details :open="open" class="series-list">
 		<summary class="list-top">
-			<h2 class="title">{{ title }}</h2>
+			<h2 class="title">
+				{{ title.slice(0, 1).toUpperCase() }}{{ title.slice(1) }}
+			</h2>
 			<div class="flip-icon">
 				<chevron-down-icon size="24" />
 			</div>

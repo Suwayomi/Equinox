@@ -1,7 +1,10 @@
 <template>
 	<div class="chapter-list">
 		<div v-for="chapter in typedChapters" :key="chapter.index" class="chapter">
-			<router-link to="/" class="chapter-info">
+			<router-link
+				:to="`/series/${chapter.mangaId}/chapter/${chapter.index}`"
+				class="chapter-info"
+			>
 				<div class="spread">
 					<div class="chapter-main">
 						<p class="chapter-title">
@@ -11,15 +14,7 @@
 							</span>
 						</p>
 					</div>
-					<div class="chapter-right">
-						<small-button
-							:class="chapter.bookmarked ? 'active' : ''"
-							@click="(e) => handleBookmarkClick(e, chapter)"
-						>
-							<loading class="icon-size" v-if="chapter.loading" />
-							<bookmark-icon v-else size="24" />
-						</small-button>
-					</div>
+					<div class="chapter-right"></div>
 				</div>
 			</router-link>
 		</div>
@@ -34,7 +29,7 @@
 	display: block;
 	color: inherit;
 	text-decoration: none;
-	padding: 5px 10px;
+	padding: 12px 10px;
 	margin-left: -10px;
 	margin-right: -10px;
 	border-radius: 4px;
@@ -91,33 +86,11 @@ export default defineComponent({
 			required: true,
 		},
 	},
-	setup(props, { emit }) {
+	setup(props) {
 		const typedChapters = ref<any[]>(props.chapters);
-
-		const handleBookmarkClick = async (e: MouseEvent, chapter: any) => {
-			e.preventDefault();
-			chapter.loading = true;
-
-			const baseUrl = localStorage.getItem("baseUrl");
-			const patchUrl = `${baseUrl}/api/v1/manga/${chapter.mangaId}/chapter/${chapter.index}`;
-
-			console.log(patchUrl);
-			const fd = new FormData();
-			fd.append("bookmarked", (!chapter.bookmarked).toString());
-
-			await fetch(patchUrl, {
-				method: "PATCH",
-				body: fd,
-			})
-				.then((d) => d.text())
-				.then(() => {
-					emit("update-chapters");
-				});
-		};
 
 		return {
 			typedChapters,
-			handleBookmarkClick,
 		};
 	},
 });

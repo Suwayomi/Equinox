@@ -29,3 +29,13 @@ export interface Series {
 	/** Tachidesk path */
 	url: string;
 }
+
+/** A category in /api/v1/category */
+export interface Category {
+	id: number;
+	order: number;
+	name: string;
+	default: boolean; // Not sure what this is for
+	loading?: boolean;
+	series?: Series[];
+}

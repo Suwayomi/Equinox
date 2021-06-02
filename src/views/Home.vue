@@ -23,6 +23,20 @@
 		<series-list v-else title="Library" open>
 			<series-card v-for="series in library" :key="series.id" :data="series" />
 		</series-list>
+
+		<!-- Some list idk -->
+		<series-list
+			v-for="category in categories"
+			:title="category.name"
+			:key="`category-${category.id}`"
+			open
+		>
+			<series-card
+				v-for="series in category.series"
+				:key="series.id"
+				:data="series"
+			/>
+		</series-list>
 	</main>
 </template>
 
@@ -45,7 +59,7 @@ import Message from "../components/util/Message.vue";
 import FullLoading from "../components/util/Loading/FullLoading.vue";
 
 // Import types
-import { Series } from "../types";
+import { Category, Series } from "../types";
 
 export default defineComponent({
 	components: {
@@ -60,6 +74,7 @@ export default defineComponent({
 		const defaultLib: Series[] = [];
 
 		const library = ref(defaultLib);
+		const categories = ref<Category[]>([]);
 		const loading = ref(true);
 		const error = ref("");
 		const displayNoTachi = ref(false);
@@ -84,6 +99,28 @@ export default defineComponent({
 			}
 
 			loading.value = false;
+
+			// Fetch all categories
+			const categoriesUrl = `${baseUrl.value}/api/v1/category`;
+			const categoryArray = await (await fetch(categoriesUrl)).json();
+			categories.value = categoryArray.map((v: Category) => {
+				return {
+					...v,
+					loading: true,
+				};
+			});
+
+			const updatedCategories: Category[] = await Promise.all(
+				categoryArray.map(async (category: Category) => {
+					category.loading = false;
+					const categoryUrl = `${categoriesUrl}/${category.id}`;
+					const categoryData = await (await fetch(categoryUrl)).json();
+					category.series = categoryData;
+					return category;
+				})
+			);
+
+			categories.value = updatedCategories.sort((a, b) => a.order - b.order);
 		}
 
 		return {
@@ -91,6 +128,7 @@ export default defineComponent({
 			library,
 			baseUrl,
 			error,
+			categories,
 			displayNoTachi,
 		};
 	},
