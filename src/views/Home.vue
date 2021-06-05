@@ -21,7 +21,7 @@
 			</message>
 
 			<!-- Some list idk -->
-			<series-list v-else title="Library" open>
+			<series-list v-else-if="library.length > 0" title="Library" open>
 				<series-card
 					v-for="series in library"
 					:key="series.id"
@@ -36,7 +36,9 @@
 				:key="`category-${category.id}`"
 				open
 			>
+				<full-loading v-if="category.loading" />
 				<series-card
+					v-else
 					v-for="series in category.series"
 					:key="series.id"
 					:data="series"

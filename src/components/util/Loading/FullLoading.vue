@@ -11,6 +11,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	grid-column: 1 / -1;
 }
 </style>
 
