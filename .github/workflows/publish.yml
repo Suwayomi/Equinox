@@ -38,7 +38,7 @@ jobs:
         run: |
           cd tachidesk/webUI/src
           rev=$(git rev-list HEAD --count)
-          echo "revision $git rev-list HEAD --count"
+          echo "revision $rev"
           echo "::set-output name=value::$rev"
 
 # Build Tachidesk with Equinox together
