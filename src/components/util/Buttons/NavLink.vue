@@ -18,7 +18,8 @@
 	color: inherit;
 	cursor: pointer;
 
-	&:not(.router-link-exact-active):hover {
+	&:not(.router-link-exact-active):hover,
+	&:not(.router-link-exact-active).do-hover-bg {
 		background: var(--badge-hover);
 	}
 

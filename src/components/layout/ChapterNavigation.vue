@@ -8,12 +8,14 @@
 		<div class="buttons">
 			<nav-link
 				v-if="previousChapter"
+				class="do-hover-bg"
 				:to="`/series/${previousChapter.mangaId}/chapter/${previousChapter.index}`"
 			>
 				{{ previousChapter.name }}
 			</nav-link>
 			<nav-link
 				v-if="nextChapter"
+				class="do-hover-bg"
 				:to="`/series/${nextChapter.mangaId}/chapter/${nextChapter.index}`"
 			>
 				{{ nextChapter.name }}
