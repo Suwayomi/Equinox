@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc --noEmit && vite build && cp _redirects dist/_redirects",
+    "build": "vue-tsc --noEmit && vite build && cp _redirects dist/_redirects && mv dist build",
     "serve": "vite preview",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
