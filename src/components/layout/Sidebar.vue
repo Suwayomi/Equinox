@@ -48,6 +48,11 @@ aside {
 	background: var(--body-offset);
 	position: sticky;
 	top: 0;
+
+	.reader-info {
+		display: grid;
+		gap: 10px;
+	}
 }
 
 .brand-link {

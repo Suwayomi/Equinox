@@ -145,7 +145,7 @@ export default defineComponent({
 
 		async function fetchData() {
 			loading.value = true;
-			const url = `${baseUrl}/api/v1/manga/${route.params.id}/?onlineFetch=false`;
+			const url = `${baseUrl}/api/v1/manga/${route.params.id}/`;
 
 			const detailsReq = fetch(url)
 				.then((d) => d.json())
@@ -160,7 +160,7 @@ export default defineComponent({
 		}
 
 		function updateChapters() {
-			const chapterUrl = `${baseUrl}/api/v1/manga/${route.params.id}/chapters?onlineFetch=false`;
+			const chapterUrl = `${baseUrl}/api/v1/manga/${route.params.id}/chapters`;
 			console.log(chapterUrl);
 			return fetch(chapterUrl)
 				.then((d) => d.json())

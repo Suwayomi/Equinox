@@ -71,5 +71,8 @@ export default defineComponent({
 			ReaderState,
 		};
 	},
+	beforeRouteUpdate() {
+		console.log(4);
+	},
 });
 </script>

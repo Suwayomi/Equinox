@@ -2,6 +2,9 @@
 	<nav>
 		<!-- <p>{{ ReaderState.currentChapter }}</p>
 		<p>{{ currentChapter }} C</p> -->
+		<div class="name">
+			<p>{{ currentChapter.name }}</p>
+		</div>
 		<div class="buttons">
 			<nav-link
 				v-if="previousChapter"
@@ -20,13 +23,33 @@
 </template>
 
 <style lang="scss" scoped>
+nav {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+
+	p {
+		margin: 0;
+	}
+}
+.name,
+.name p {
+	width: 100%;
+	text-align: center;
+}
 .buttons {
 	display: flex;
-	grid-gap: 10px;
+	gap: 10px;
 	word-break: break-word;
 
 	> * {
 		width: 100%;
+	}
+	> *:first-child {
+		text-align: left;
+	}
+	> *:last-child {
+		text-align: right;
 	}
 }
 </style>
