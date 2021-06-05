@@ -12,6 +12,10 @@
 	justify-content: center;
 	align-items: center;
 	grid-column: 1 / -1;
+
+	&.full-height {
+		min-height: calc(100vh - env(safe-area-inset-top));
+	}
 }
 </style>
 

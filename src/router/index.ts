@@ -3,6 +3,7 @@ import Home from "../views/Home.vue";
 import Settings from "../views/Settings.vue";
 import History from "../views/History.vue";
 import SeriesDetails from "../views/SeriesDetails.vue";
+import Chapter from "../views/Chapter.vue";
 
 const routes = [
 	{
@@ -26,9 +27,9 @@ const routes = [
 		component: SeriesDetails,
 	},
 	{
-		path: "/series/:id/chapter:chapterId",
+		path: "/series/:id/chapter/:chapterId",
 		name: "Chapter",
-		component: SeriesDetails,
+		component: Chapter,
 	},
 ];
 

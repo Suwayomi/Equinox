@@ -21,6 +21,23 @@
 				<span>History</span>
 			</nav-link>
 		</nav>
+
+		<div v-if="route.params.chapterId" class="reader-info">
+			<div
+				class="loading"
+				v-if="
+					SidebarRef.reader &&
+					SidebarRef.reader.imagesLoaded < SidebarRef.reader.pageCount
+				"
+			>
+				Loading... ({{
+					Math.floor(
+						(SidebarRef.reader.imagesLoaded / SidebarRef.reader.pageCount) * 100
+					)
+				}}%, {{ SidebarRef.reader.imagesLoaded }} of
+				{{ SidebarRef.reader.pageCount }})
+			</div>
+		</div>
 	</aside>
 </template>
 
@@ -54,11 +71,25 @@ aside {
 		color: var(--theme);
 	}
 }
+
+.reader-info {
+	margin-top: 20px;
+	padding: 20px 0;
+	border-top: 1px solid var(--border);
+
+	.loading {
+		text-align: center;
+	}
+}
 </style>
 
 <script lang="ts">
-// Import Vue
-import { defineComponent } from "vue";
+// Import Vue stuff
+import { defineComponent, ref } from "vue";
+import { useRoute } from "vue-router";
+
+// Ref
+import SidebarRef from "../../refs/sidebar";
 
 // Import icons
 import {
@@ -78,6 +109,14 @@ export default defineComponent({
 		HomeIcon,
 		SettingsIcon,
 		ClockIcon,
+	},
+	setup() {
+		const route = useRoute();
+
+		return {
+			SidebarRef,
+			route,
+		};
 	},
 });
 </script>
