@@ -3,7 +3,7 @@
 		<!-- <p>{{ ReaderState.currentChapter }}</p>
 		<p>{{ currentChapter }} C</p> -->
 		<div class="name">
-			<p>{{ currentChapter.name }}</p>
+			<p>{{ currentChapter.name }}: 0 of {{ ReaderState.pageCount }}</p>
 		</div>
 		<div class="buttons">
 			<nav-link
