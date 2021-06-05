@@ -25,6 +25,11 @@ const routes = [
 		name: "Series",
 		component: SeriesDetails,
 	},
+	{
+		path: "/series/:id/chapter:chapterId",
+		name: "Chapter",
+		component: SeriesDetails,
+	},
 ];
 
 const router = createRouter({

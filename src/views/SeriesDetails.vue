@@ -5,7 +5,7 @@
 
 		<!-- Information -->
 		<div v-else>
-			<div class="banner"></div>
+			<div class="banner" :style="bannerStyle"></div>
 			<container class="details-layout reduced-margin">
 				<!-- Information, left side -->
 				<aside>
@@ -61,7 +61,8 @@
 .banner {
 	width: 100%;
 	height: 350px;
-	background-image: url(https://s4.anilist.co/file/anilistcdn/media/manga/banner/98416-1XM7oOALCGjA.jpg);
+	// background-image: url(https://s4.anilist.co/file/anilistcdn/media/manga/banner/98416-1XM7oOALCGjA.jpg);
+	background-image: var(--bg-image);
 	background-color: var(--transparent-bg);
 	background-position: center;
 	background-size: cover;
@@ -110,7 +111,7 @@ section + section {
 
 <script lang="ts">
 // Import Vue
-import { defineComponent, onMounted, ref } from "vue";
+import { computed, defineComponent, onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 
 // Import components
@@ -172,12 +173,19 @@ export default defineComponent({
 				});
 		}
 
+		const bannerStyle = computed(() => {
+			return `--bg-image: url("https://equinox-functions.netlify.app/.netlify/functions/banner?query=${encodeURIComponent(
+				seriesData.value.title
+			)}")`;
+		});
+
 		return {
 			seriesData,
 			chapters,
 			loading,
 			baseUrl,
 			updateChapters,
+			bannerStyle,
 		};
 	},
 });
