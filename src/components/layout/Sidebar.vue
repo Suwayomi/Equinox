@@ -31,6 +31,10 @@
 					Math.floor((ReaderState.imagesLoaded / ReaderState.pageCount) * 100)
 				}}%, {{ ReaderState.imagesLoaded }} of {{ ReaderState.pageCount }})
 			</div>
+
+			<div class="navigation" v-if="ReaderState.chapters.length > 0">
+				<chapter-navigation />
+			</div>
 		</div>
 	</aside>
 </template>
@@ -95,11 +99,13 @@ import {
 
 // Import components
 import NavLink from "../util/Buttons/NavLink.vue";
+import ChapterNavigation from "../layout/ChapterNavigation.vue";
 
 export default defineComponent({
 	components: {
 		AlignCenterIcon,
 		NavLink,
+		ChapterNavigation,
 		HomeIcon,
 		SettingsIcon,
 		ClockIcon,

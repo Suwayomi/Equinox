@@ -2,12 +2,19 @@
 	<div class="pages">
 		<img
 			v-for="imgSrc in images"
+			class="page"
 			:key="imgSrc"
 			:src="imgSrc"
 			@load="imageLoaded"
 		/>
 	</div>
 </template>
+
+<style lang="scss" scoped>
+.page {
+	max-width: 100%;
+}
+</style>
 
 <script lang="ts">
 import { defineComponent } from "vue";
@@ -27,7 +34,6 @@ export default defineComponent({
 	},
 	methods: {
 		imageLoaded() {
-			console.log(ReaderState.value);
 			ReaderState.value.imagesLoaded++;
 		},
 	},

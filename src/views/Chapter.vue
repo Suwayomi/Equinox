@@ -1,6 +1,6 @@
 <template>
 	<div class="chapter">
-		<full-loading v-if="loading" class="full-height" />
+		<full-loading v-if="ReaderState.loading" class="full-height" />
 		<div>
 			<reader
 				v-if="ReaderState && ReaderState.chapter"
@@ -14,7 +14,7 @@
 // Import Vue stuff
 import { defineComponent, onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
-import ReaderState from "../refs/reader";
+import ReaderState, { setBaseState } from "../refs/reader";
 
 // Import components
 import FullLoading from "../components/util/Loading/FullLoading.vue";
@@ -26,18 +26,28 @@ export default defineComponent({
 		Reader,
 	},
 	setup() {
-		const loading = ref(true);
-
+		console.log(1);
 		const baseUrl = localStorage.getItem("baseUrl");
 		const route = useRoute();
+
+		setBaseState(route);
 
 		onMounted(() => {
 			fetchData();
 		});
 
 		async function fetchData() {
-			loading.value = true;
+			ReaderState.value.loading = true;
+			const chaptersUrl = `${baseUrl}/api/v1/manga/${route.params.id}/chapters`;
 			const url = `${baseUrl}/api/v1/manga/${route.params.id}/chapter/${route.params.chapterId}`;
+
+			setBaseState(route);
+
+			const chaptersReq = fetch(chaptersUrl)
+				.then((d) => d.json())
+				.then((chapters) => {
+					ReaderState.value.chapters = chapters;
+				});
 
 			const detailsReq = fetch(url)
 				.then((d) => d.json())
@@ -47,19 +57,16 @@ export default defineComponent({
 						.map((_, i) => `${url}/page/${i}`);
 
 					// Send info to sidebar
-					ReaderState.value = {
-						pageCount: details.pageCount,
-						imagesLoaded: 0,
-						chapter: details,
-					};
+					ReaderState.value.pageCount = details.pageCount;
+					ReaderState.value.imagesLoaded = 0;
+					ReaderState.value.chapter = details;
 				});
 
-			await Promise.all([detailsReq]);
-			loading.value = false;
+			await Promise.all([chaptersReq, detailsReq]);
+			ReaderState.value.loading = false;
 		}
 
 		return {
-			loading,
 			baseUrl,
 			ReaderState,
 		};
