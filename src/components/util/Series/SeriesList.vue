@@ -1,11 +1,13 @@
 <template>
 	<details :open="open" class="series-list">
 		<summary class="list-top">
-			<h2 class="title">
-				{{ title.slice(0, 1).toUpperCase() }}{{ title.slice(1) }}
-			</h2>
-			<div class="flip-icon">
-				<chevron-down-icon size="24" />
+			<div class="summary-content">
+				<h2 class="title">
+					{{ title.slice(0, 1).toUpperCase() }}{{ title.slice(1) }}
+				</h2>
+				<div class="flip-icon">
+					<chevron-down-icon size="24" />
+				</div>
 			</div>
 		</summary>
 		<div class="series-grid">
@@ -30,8 +32,13 @@ details summary.list-top {
 	margin-bottom: 10px;
 	padding-bottom: 10px;
 	display: flex;
-	justify-content: space-between;
-	align-items: center;
+
+	.summary-content {
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
 
 	.title {
 		font-size: 1.5rem;
