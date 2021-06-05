@@ -23,6 +23,10 @@
 		</nav>
 
 		<div v-if="route.params.chapterId" class="reader-info">
+			<div class="navigation" v-if="ReaderState.chapters.length > 0">
+				<chapter-navigation />
+			</div>
+
 			<div
 				class="loading"
 				v-if="ReaderState && ReaderState.imagesLoaded < ReaderState.pageCount"
@@ -30,10 +34,6 @@
 				Loading... ({{
 					Math.floor((ReaderState.imagesLoaded / ReaderState.pageCount) * 100)
 				}}%, {{ ReaderState.imagesLoaded }} of {{ ReaderState.pageCount }})
-			</div>
-
-			<div class="navigation" v-if="ReaderState.chapters.length > 0">
-				<chapter-navigation />
 			</div>
 		</div>
 	</aside>

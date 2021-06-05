@@ -12,7 +12,7 @@
 
 <script lang="ts">
 // Import Vue stuff
-import { defineComponent, onMounted, ref } from "vue";
+import { defineComponent, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import ReaderState, { setBaseState } from "../refs/reader";
 
@@ -26,7 +26,6 @@ export default defineComponent({
 		Reader,
 	},
 	setup() {
-		console.log(1);
 		const baseUrl = localStorage.getItem("baseUrl");
 		const route = useRoute();
 
@@ -70,9 +69,6 @@ export default defineComponent({
 			baseUrl,
 			ReaderState,
 		};
-	},
-	beforeRouteUpdate() {
-		console.log(4);
 	},
 });
 </script>

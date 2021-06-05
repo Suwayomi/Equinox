@@ -1,10 +1,10 @@
 <template>
 	<div class="pages">
 		<img
-			v-for="imgSrc in typedImages"
+			v-for="imgSrc in images"
 			class="page"
 			:key="imgSrc"
-			:src="imgSrc"
+			:src="imgSrc.toString()"
 			@load="imageLoaded"
 		/>
 	</div>
@@ -17,22 +17,19 @@
 </style>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent, PropType } from "vue";
 import ReaderState from "../../../refs/reader";
 
 export default defineComponent({
 	props: {
 		images: {
-			type: Array,
+			type: Array as PropType<Array<string>>,
 			required: true,
 		},
 	},
-	setup(props) {
-		const typedImages = ref<string[]>(props.images as string[]);
-
+	setup() {
 		return {
 			ReaderState,
-			typedImages,
 		};
 	},
 	methods: {

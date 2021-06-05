@@ -38,6 +38,7 @@ nav {
 	text-align: center;
 }
 .buttons {
+	width: 100%;
 	display: flex;
 	gap: 10px;
 	word-break: break-word;
