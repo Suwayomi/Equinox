@@ -20,6 +20,10 @@
 details:not([open]) .flip-icon {
 	transform: rotate(180deg);
 }
+
+details summary::-webkit-details-marker {
+	display: none;
+}
 details summary.list-top {
 	cursor: pointer;
 	border-bottom: 1px solid var(--border);
