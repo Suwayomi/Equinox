@@ -1,28 +1,30 @@
 <template>
 	<main>
-		<!-- Errors -->
-		<div v-if="error">
-			<banner type="error">
-				{{ error }}
-			</banner>
-		</div>
+		<container>
+			<!-- Errors -->
+			<div v-if="error">
+				<banner type="error">
+					{{ error }}
+				</banner>
+			</div>
 
-		<!-- Message -->
-		<div v-if="message">
-			<banner type="message">
-				{{ message }}
-			</banner>
-		</div>
+			<!-- Message -->
+			<div v-if="message">
+				<banner type="message">
+					{{ message }}
+				</banner>
+			</div>
 
-		<!-- Change error -->
-		<p>Change base URL for Tachidesk API</p>
-		<input
-			type="text"
-			:value="(baseUrl || '').toString()"
-			@change="(e) => setBaseUrl(e)"
-			style="width: 100%; font-size: 1rem"
-		/>
-		{{ baseUrl }}
+			<!-- Change error -->
+			<p>Change base URL for Tachidesk API</p>
+			<input
+				type="text"
+				:value="(baseUrl || '').toString()"
+				@change="(e) => setBaseUrl(e)"
+				style="width: 100%; font-size: 1rem"
+			/>
+			{{ baseUrl }}
+		</container>
 	</main>
 </template>
 
@@ -32,10 +34,12 @@ import { defineComponent, ref } from "vue";
 
 // Import components
 import Banner from "../components/util/Banner.vue";
+import Container from "~/components/layout/Container.vue";
 
 export default defineComponent({
 	components: {
 		Banner,
+		Container,
 	},
 	setup() {
 		let baseUrl = ref(localStorage.getItem("baseUrl"));
