@@ -1,7 +1,7 @@
 <template>
 	<div class="pages">
 		<img
-			v-for="imgSrc in images"
+			v-for="imgSrc in typedImages"
 			class="page"
 			:key="imgSrc"
 			:src="imgSrc"
@@ -17,7 +17,7 @@
 </style>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 import ReaderState from "../../../refs/reader";
 
 export default defineComponent({
@@ -27,9 +27,12 @@ export default defineComponent({
 			required: true,
 		},
 	},
-	setup() {
+	setup(props) {
+		const typedImages = ref<string[]>(props.images as string[]);
+
 		return {
 			ReaderState,
+			typedImages,
 		};
 	},
 	methods: {
