@@ -66,20 +66,26 @@ jobs:
             **/webUI/src/node_modules
           key: ${{ runner.os }}-${{ hashFiles('**/webUI/src/yarn.lock') }}
 
-      - name: Build and copy webUI, Build Jar
-        uses: eskatos/gradle-command-action@v1
-        env:
-          ProductName: "Equinox" 
-          ProductBuildType: "Stable"
-          ProductVersion: ${{ github.ref }}
-          ProductRevision: ${{ steps.calcRevision.outputs.value }}
-        with:
-          build-root-directory: tachidesk
-          wrapper-directory: tachidesk
-          arguments: :webUI:copyBuild :server:shadowJar --stacktrace
-          wrapper-cache-enabled: true
-          dependencies-cache-enabled: true
-          configuration-cache-enabled: true
+      # - name: Build and copy webUI, Build Jar
+      #   uses: eskatos/gradle-command-action@v1
+      #   env:
+      #     ProductName: "Equinox" 
+      #     ProductBuildType: "Stable"
+      #     ProductVersion: ${{ github.ref }}
+      #     ProductRevision: ${{ steps.calcRevision.outputs.value }}
+      #   with:
+      #     build-root-directory: tachidesk
+      #     wrapper-directory: tachidesk
+      #     arguments: :webUI:copyBuild :server:shadowJar --stacktrace
+      #     wrapper-cache-enabled: true
+      #     dependencies-cache-enabled: true
+      #     configuration-cache-enabled: true
+
+     - name: Mock Build and copy webUI, Build Jar
+       run: |
+         mkdir -p tachidesk/server/build
+         cd tachidesk/server/build
+         echo "test" > Equinox-v0.0.8-r1.jar
 
       - name: make windows packages
         run: |
