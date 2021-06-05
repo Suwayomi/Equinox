@@ -1,7 +1,16 @@
 <template>
 	<div class="chapter">
-		<full-loading v-if="ReaderState.loading" class="full-height" />
-		<div>
+		<full-loading
+			v-if="
+				ReaderState.loading || ReaderState.imagesLoaded < ReaderState.pageCount
+			"
+			class="full-height"
+		/>
+		<div
+			:style="
+				ReaderState.imagesLoaded < ReaderState.pageCount ? 'display: none' : ''
+			"
+		>
 			<reader
 				v-if="ReaderState && ReaderState.chapter"
 				:images="ReaderState.chapter.imageUrls"
