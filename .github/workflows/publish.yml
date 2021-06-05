@@ -41,13 +41,13 @@ jobs:
 
       - name: Copy CI gradle.properties
         run: |
-          cd master
+          cd tachidesk
           mkdir -p ~/.gradle
           cp .github/runner-files/ci-gradle.properties ~/.gradle/gradle.properties
 
       - name: Download android.jar
         run: |
-          cd master
+          cd tachidesk
           curl https://raw.githubusercontent.com/Suwayomi/Tachidesk/android-jar/android.jar -o AndroidCompat/lib/android.jar
 
       - name: Cache node_modules
@@ -62,8 +62,8 @@ jobs:
         env:
           TachideskBuildType: "Stable"
         with:
-          build-root-directory: master
-          wrapper-directory: master
+          build-root-directory: tachidesk
+          wrapper-directory: tachidesk
           arguments: :webUI:copyBuild :server:shadowJar --stacktrace
           wrapper-cache-enabled: true
           dependencies-cache-enabled: true
@@ -71,7 +71,7 @@ jobs:
 
       - name: make windows packages
         run: |
-          cd master/scripts
+          cd tachidesk/scripts
           ./windows-bundler.sh win32
           ./windows-bundler.sh win64
 
@@ -80,7 +80,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
-          file: "master/server/build/*.jar;master/server/build/*.zip"
+          file: "tachidesk/server/build/*.jar;tachidesk/server/build/*.zip"
           tags: true
           draft: true
           verbose: true
