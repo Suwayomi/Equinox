@@ -25,17 +25,11 @@
 		<div v-if="route.params.chapterId" class="reader-info">
 			<div
 				class="loading"
-				v-if="
-					SidebarRef.reader &&
-					SidebarRef.reader.imagesLoaded < SidebarRef.reader.pageCount
-				"
+				v-if="ReaderState && ReaderState.imagesLoaded < ReaderState.pageCount"
 			>
 				Loading... ({{
-					Math.floor(
-						(SidebarRef.reader.imagesLoaded / SidebarRef.reader.pageCount) * 100
-					)
-				}}%, {{ SidebarRef.reader.imagesLoaded }} of
-				{{ SidebarRef.reader.pageCount }})
+					Math.floor((ReaderState.imagesLoaded / ReaderState.pageCount) * 100)
+				}}%, {{ ReaderState.imagesLoaded }} of {{ ReaderState.pageCount }})
 			</div>
 		</div>
 	</aside>
@@ -89,7 +83,7 @@ import { defineComponent, ref } from "vue";
 import { useRoute } from "vue-router";
 
 // Ref
-import SidebarRef from "../../refs/sidebar";
+import ReaderState from "../../refs/reader";
 
 // Import icons
 import {
@@ -114,7 +108,7 @@ export default defineComponent({
 		const route = useRoute();
 
 		return {
-			SidebarRef,
+			ReaderState,
 			route,
 		};
 	},

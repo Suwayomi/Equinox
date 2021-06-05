@@ -2,11 +2,9 @@
 	<div class="chapter">
 		<full-loading v-if="loading" class="full-height" />
 		<div>
-			<img
-				v-for="imgSrc in chapterData.imageUrls"
-				:key="imgSrc"
-				:src="imgSrc"
-				@load="imageLoaded"
+			<reader
+				v-if="ReaderState && ReaderState.chapter"
+				:images="ReaderState.chapter.imageUrls"
 			/>
 		</div>
 	</div>
@@ -16,18 +14,19 @@
 // Import Vue stuff
 import { defineComponent, onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
-import SidebarRef from "../refs/sidebar";
+import ReaderState from "../refs/reader";
 
 // Import components
 import FullLoading from "../components/util/Loading/FullLoading.vue";
+import Reader from "../components/util/Series/Reader.vue";
 
 export default defineComponent({
 	components: {
 		FullLoading,
+		Reader,
 	},
 	setup() {
 		const loading = ref(true);
-		const chapterData = ref<any>({});
 
 		const baseUrl = localStorage.getItem("baseUrl");
 		const route = useRoute();
@@ -38,7 +37,6 @@ export default defineComponent({
 
 		async function fetchData() {
 			loading.value = true;
-			console.log(route.params);
 			const url = `${baseUrl}/api/v1/manga/${route.params.id}/chapter/${route.params.chapterId}`;
 
 			const detailsReq = fetch(url)
@@ -47,14 +45,13 @@ export default defineComponent({
 					details.imageUrls = Array(details.pageCount)
 						.fill(0)
 						.map((_, i) => `${url}/page/${i}`);
-					chapterData.value = details;
 
 					// Send info to sidebar
-					SidebarRef.value.reader = {
+					ReaderState.value = {
 						pageCount: details.pageCount,
 						imagesLoaded: 0,
+						chapter: details,
 					};
-					console.log(SidebarRef.value.reader);
 				});
 
 			await Promise.all([detailsReq]);
@@ -62,16 +59,10 @@ export default defineComponent({
 		}
 
 		return {
-			chapterData,
 			loading,
 			baseUrl,
-			SidebarRef,
+			ReaderState,
 		};
-	},
-	methods: {
-		imageLoaded() {
-			SidebarRef.value.reader.imagesLoaded++;
-		},
 	},
 });
 </script>
