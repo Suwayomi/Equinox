@@ -23,7 +23,7 @@
 							<tag>Status: {{ seriesData.status.toLowerCase() }}</tag>
 							<!-- Genres -->
 							<tag
-								v-for="genre in seriesData.genre.split(', ')"
+								v-for="genre in seriesData.genre"
 								:key="`genre-${genre.toLowerCase()}`"
 							>
 								{{ genre }}
