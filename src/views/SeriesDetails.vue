@@ -90,6 +90,7 @@ section + section {
 		content: "";
 		display: block;
 		width: 0.8rem;
+		min-width: 0.8rem;
 		height: 0.8rem;
 		background: var(--theme);
 		border-radius: 50%;
