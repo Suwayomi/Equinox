@@ -107,6 +107,18 @@ section + section {
 	flex-wrap: wrap;
 	gap: 5px;
 }
+@media (orientation: portrait) {
+	.details-layout {
+		grid-template-columns: none;
+		grid-template-rows: auto 1fr;
+	}
+	.is-poster {
+		margin-top: -10rem;
+		margin-left: auto;
+		margin-right: auto;
+		width: 13rem;
+	}
+}
 </style>
 
 <script lang="ts">

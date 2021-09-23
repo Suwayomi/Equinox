@@ -16,10 +16,13 @@
 
 @media (orientation: portrait) {
 	.sidebar {
-		display: none;
+		position: relative;
+		width: auto;
+		height: auto;
 	}
 	.main-layout {
-		grid-template-columns: 100%;
+		grid-template-columns: none;
+		grid-template-rows: auto;
 	}
 }
 </style>
