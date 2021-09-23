@@ -21,15 +21,6 @@
 			</message>
 
 			<!-- Some list idk -->
-			<series-list v-else-if="library.length > 0" title="Library" open>
-				<series-card
-					v-for="series in library"
-					:key="series.id"
-					:data="series"
-				/>
-			</series-list>
-
-			<!-- Some list idk -->
 			<series-list
 				v-for="category in categories"
 				:title="category.name"
@@ -81,9 +72,6 @@ export default defineComponent({
 		Container,
 	},
 	setup() {
-		const defaultLib: Series[] = [];
-
-		const library = ref(defaultLib);
 		const categories = ref<Category[]>([]);
 		const loading = ref(true);
 		const error = ref("");
@@ -97,12 +85,11 @@ export default defineComponent({
 
 		async function fetchData() {
 			loading.value = true;
-			library.value = [];
 
 			try {
-				const url = `${baseUrl.value}/api/v1/library`;
-				const libraryArray = await (await fetch(url)).json();
-				library.value = libraryArray;
+			const categoriesUrl = `${baseUrl.value}/api/v1/category`;
+			const categoryArray = await (await fetch(categoriesUrl)).json();
+			categories.value = categoryArray;
 				displayNoTachi.value = false;
 			} catch (err) {
 				displayNoTachi.value = true;
@@ -135,7 +122,6 @@ export default defineComponent({
 
 		return {
 			loading,
-			library,
 			baseUrl,
 			error,
 			categories,
