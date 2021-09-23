@@ -109,8 +109,7 @@ section + section {
 }
 @media (orientation: portrait) {
 	.details-layout {
-		grid-template-columns: none;
-		grid-template-rows: auto 1fr;
+		display: block;
 	}
 	.is-poster {
 		margin-top: -10rem;

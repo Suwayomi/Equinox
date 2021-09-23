@@ -21,8 +21,7 @@
 		height: auto;
 	}
 	.main-layout {
-		grid-template-columns: none;
-		grid-template-rows: auto;
+		display: block;
 	}
 }
 </style>
